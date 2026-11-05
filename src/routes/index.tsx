@@ -194,7 +194,7 @@ function Hero() {
               }`}
             />
           ))}
-          <div className="absolute inset-x-0 bottom-0 h-2/3 hero-scrim lg:hidden" />
+          <div className="absolute inset-x-0 bottom-0 h-full hero-scrim lg:hidden" />
         </div>
 
         {/* Big script word (desktop) */}
@@ -220,7 +220,7 @@ function Hero() {
         </div>
 
         {/* HUD */}
-        <div className="absolute bottom-8 left-5 z-10 flex items-center gap-3 text-xs font-semibold uppercase tracking-[2px] text-on-dark lg:left-[6vw]">
+        <div className="absolute bottom-8 left-5 z-10 hidden sm:flex items-center gap-3 text-xs font-semibold uppercase tracking-[2px] text-on-dark lg:left-[6vw]">
           <span className="h-2 w-2 rounded-full bg-blush" />
           Now slicing: {s.label}
         </div>
