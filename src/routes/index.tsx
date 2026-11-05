@@ -446,10 +446,10 @@ function Love() {
       <span className="eyebrow">Love notes</span>
       <p className="mx-auto mt-6 font-script text-8xl leading-none text-primary">"</p>
       <blockquote key={i} className="animate-stage mx-auto max-w-3xl font-display text-[clamp(24px,3vw,38px)] leading-[1.3]">
-        {notes[i][0]}
+        {note[0]}
       </blockquote>
-      <p className="mt-8 font-semibold">{notes[i][1]}</p>
-      <p className="text-sm text-muted-foreground">{notes[i][2]}</p>
+      <p className="mt-8 font-semibold">{note[1]}</p>
+      <p className="text-sm text-muted-foreground">{note[2]}</p>
       <div className="mt-8 flex justify-center gap-2">
         {notes.map((_, k) => (
           <button key={k} aria-label={`Show review ${k + 1}`} onClick={() => setI(k)} className={`h-2 rounded-full transition-all ${k === i ? "w-8 bg-primary" : "w-2 bg-cocoa/25"}`} />
