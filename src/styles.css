@@ -74,7 +74,7 @@
 
   --shadow-soft: 0 30px 60px -25px oklch(0.24 0.035 40 / 35%);
   --shadow-cherry: 0 14px 30px -10px oklch(0.52 0.17 20 / 55%);
-  --gradient-hero-text: linear-gradient(0deg, oklch(0.18 0.03 40 / 70%), transparent 60%);
+  --gradient-hero-text: linear-gradient(0deg, oklch(0.18 0.03 40 / 85%), oklch(0.18 0.03 40 / 35%) 55%, transparent 80%);
 }
 
 @layer base {
