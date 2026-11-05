@@ -173,7 +173,7 @@ function Hero() {
     };
   }, []);
   const stage = p < 0.33 ? 0 : p < 0.67 ? 1 : 2;
-  const s = STAGES[stage];
+  const s = STAGES[stage]!;
 
   return (
     <section id="top" ref={runway} className="relative h-[300vh] bg-cocoa">
@@ -246,7 +246,7 @@ function Counter({ to, suffix = "" }: { to: number; suffix?: string }) {
     const el = ref.current;
     if (!el) return;
     const io = new IntersectionObserver(([e]) => {
-      if (!e.isIntersecting) return;
+      if (!e?.isIntersecting) return;
       io.disconnect();
       const start = performance.now();
       const tick = (t: number) => {
@@ -436,6 +436,7 @@ function Love() {
     ["Ordered the coconut cake for my mum's birthday. She cried. I cried. We had seconds.", "Aisha K.", "Proud cake gifter"],
   ];
   const [i, setI] = useState(0);
+  const note = notes[i]!;
   useEffect(() => {
     const t = setInterval(() => setI((x) => (x + 1) % notes.length), 6000);
     return () => clearInterval(t);
