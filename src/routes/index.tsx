@@ -3,7 +3,15 @@ import { useEffect, useRef, useState } from "react";
 import fudge from "@/assets/fudge_cake.mp4.asset.json";
 import coconut from "@/assets/coconut_cake.mp4.asset.json";
 import tiramisu from "@/assets/tiramisu_cake.mp4.asset.json";
-import redVelvet from "@/assets/red-velvet.jpg";
+import vanillaImg from "@/assets/vanilla_cake.jpg.asset.json";
+import redVelvetImg from "@/assets/redvelvet_cake.jpg.asset.json";
+import lemonImg from "@/assets/lemon_cake.jpg.asset.json";
+import marbleImg from "@/assets/marble_cake.jpg.asset.json";
+import ganacheImg from "@/assets/ganache_cake.jpg.asset.json";
+import mousseImg from "@/assets/mousse_cake.jpg.asset.json";
+import oreoImg from "@/assets/oreo_cake.jpg.asset.json";
+import passionImg from "@/assets/passion_cake.jpg.asset.json";
+import mangoImg from "@/assets/mango_cake.jpg.asset.json";
 import cheatDay from "@/assets/cheat-day.jpg";
 import counter from "@/assets/bakery-counter.jpg";
 
@@ -52,20 +60,46 @@ const STAGES = [
   },
 ];
 
+type Tier = "Standard" | "Rich" | "Premium";
 type Cake = {
   name: string;
-  cat: string;
-  price: string;
+  cat: "Classics" | "Fancy" | "Tropical";
+  tier: Tier;
   note: string;
   video?: string;
   image?: string;
 };
 
+// Prices in TSh: slice, 0.5kg, 1kg, 1.5kg, 2kg, 3kg
+const PRICES: Record<Tier, number[]> = {
+  Standard: [10000, 35000, 55000, 78000, 100000, 145000],
+  Rich: [12000, 40000, 63000, 88000, 112000, 163000],
+  Premium: [15000, 45000, 70000, 96000, 122000, 175000],
+};
+const SIZES = ["Slice", "½ kg", "1 kg", "1½ kg", "2 kg", "3 kg"];
+const tsh = (n: number) => `TSh ${n.toLocaleString("en-US")}`;
+
 const CAKES: Cake[] = [
-  { name: "Chocolate Fudge", cat: "Chocolate", price: "KSh 4,200", note: "Dense, glossy, ridiculously rich.", video: fudge.url },
-  { name: "Coconut Cloud", cat: "Classic", price: "KSh 3,800", note: "Toasted flakes on whipped vanilla.", video: coconut.url },
-  { name: "Tiramisu", cat: "Creamy", price: "KSh 4,500", note: "Mascarpone, espresso, cocoa snow.", video: tiramisu.url },
-  { name: "Red Velvet", cat: "Classic", price: "KSh 4,000", note: "Cream cheese frosting, crimson crumb.", image: redVelvet },
+  { name: "Vanilla Butter", cat: "Classics", tier: "Standard", note: "Soft, golden and buttery.", image: vanillaImg.url },
+  { name: "Chocolate Fudge", cat: "Classics", tier: "Rich", note: "Dense, glossy, ridiculously rich.", video: fudge.url },
+  { name: "Red Velvet", cat: "Classics", tier: "Rich", note: "Cream cheese frosting, crimson crumb.", image: redVelvetImg.url },
+  { name: "Lemon Drizzle", cat: "Classics", tier: "Standard", note: "Zesty glaze on a tender loaf.", image: lemonImg.url },
+  { name: "Marble", cat: "Classics", tier: "Standard", note: "Vanilla and cocoa swirled together.", image: marbleImg.url },
+  { name: "Coconut", cat: "Classics", tier: "Standard", note: "Toasted flakes on whipped vanilla.", video: coconut.url },
+  { name: "Chocolate Ganache", cat: "Fancy", tier: "Premium", note: "Silky ganache poured over cocoa sponge.", image: ganacheImg.url },
+  { name: "Chocolate Mousse", cat: "Fancy", tier: "Premium", note: "Airy mousse on a fudgy base.", image: mousseImg.url },
+  { name: "Oreo", cat: "Fancy", tier: "Rich", note: "Cookies-and-cream, crumb on top.", image: oreoImg.url },
+  { name: "Passion Fruit", cat: "Fancy", tier: "Rich", note: "Tangy curd, sunny sponge.", image: passionImg.url },
+  { name: "Mango", cat: "Tropical", tier: "Rich", note: "Fresh mango layers and cream.", image: mangoImg.url },
+];
+
+const MORE_TROPICAL: { name: string; tier: Tier }[] = [
+  { name: "Passion Fruit & Coconut", tier: "Rich" },
+  { name: "Banana", tier: "Standard" },
+  { name: "Coconut & Lime", tier: "Rich" },
+  { name: "Orange", tier: "Standard" },
+  { name: "Pineapple & Coconut", tier: "Rich" },
+  { name: "Mango & Vanilla Cream", tier: "Rich" },
 ];
 
 function useReveal() {
@@ -311,37 +345,52 @@ function Story() {
 }
 
 function CakeCard({ c }: { c: Cake }) {
+  const [size, setSize] = useState(2);
+  const prices = PRICES[c.tier];
   return (
-    <article className="group overflow-hidden rounded-[var(--radius)] bg-cocoa text-on-dark shadow-soft transition duration-500 hover:-translate-y-2">
+    <article className="group flex flex-col overflow-hidden rounded-[var(--radius)] bg-cocoa text-on-dark shadow-soft transition duration-500 hover:-translate-y-2">
       <div className="relative aspect-[4/5] overflow-hidden">
         {c.video ? (
           <video src={c.video} autoPlay muted loop playsInline preload="metadata" className="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
         ) : (
-          <img src={c.image} alt={c.name} loading="lazy" width={896} height={1152} className="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
+          <img src={c.image} alt={`${c.name} cake`} loading="lazy" width={736} height={920} className="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
         )}
         <span className="absolute left-4 top-4 rounded-full bg-cream/90 px-3 py-1 text-[11px] font-semibold uppercase tracking-[2px] text-cocoa">{c.cat}</span>
+        <span className="absolute right-4 top-4 rounded-full bg-primary px-3 py-1 text-[11px] font-semibold uppercase tracking-[2px] text-primary-foreground">{c.tier}</span>
       </div>
-      <div className="flex items-end justify-between gap-4 p-6">
-        <div>
-          <h3 className="font-display text-2xl">{c.name}</h3>
-          <p className="mt-1 text-sm text-on-dark-dim">{c.note}</p>
+      <div className="flex flex-1 flex-col p-6">
+        <h3 className="font-display text-2xl">{c.name}</h3>
+        <p className="mt-1 text-sm text-on-dark-dim">{c.note}</p>
+        <div className="mt-5 flex flex-wrap gap-1.5">
+          {SIZES.map((s, i) => (
+            <button
+              key={s}
+              onClick={() => setSize(i)}
+              className={`rounded-full px-3 py-1 text-xs font-medium transition ${
+                size === i ? "bg-blush text-cocoa" : "border border-on-dark/20 text-on-dark-dim hover:border-on-dark/60"
+              }`}
+            >
+              {s}
+            </button>
+          ))}
         </div>
-        <p className="shrink-0 font-display text-lg text-blush">{c.price}</p>
+        <p className="mt-5 font-display text-2xl text-blush">{tsh(prices[size])}</p>
       </div>
     </article>
   );
 }
 
 function Menu() {
-  const tabs = ["All", "Chocolate", "Classic", "Creamy"];
+  const tabs = ["All", "Classics", "Fancy", "Tropical"];
   const [tab, setTab] = useState("All");
   const list = CAKES.filter((c) => tab === "All" || c.cat === tab);
+  const tiers: Tier[] = ["Standard", "Rich", "Premium"];
   return (
     <section id="menu" className="bg-blush/50 px-5 py-24 md:px-12 md:py-32">
       <div className="mx-auto max-w-[1320px]">
         <div className="reveal flex flex-col justify-between gap-8 md:flex-row md:items-end">
           <div>
-            <span className="eyebrow">The cheat sheet</span>
+            <span className="eyebrow">The cheat sheet · price list</span>
             <h2 className="mt-5 font-display text-[clamp(36px,4.4vw,60px)] leading-[1.08]">
               Handpicked <span className="font-script text-primary">indulgences</span>
             </h2>
@@ -364,6 +413,44 @@ function Menu() {
           {list.map((c) => (
             <CakeCard key={c.name} c={c} />
           ))}
+        </div>
+
+        {(tab === "All" || tab === "Tropical") && (
+          <div className="mt-10 rounded-[var(--radius)] bg-card p-7 shadow-soft">
+            <h3 className="font-display text-2xl">More <span className="font-script text-primary">tropical</span> flavours</h3>
+            <ul className="mt-5 grid gap-x-10 gap-y-3 sm:grid-cols-2 lg:grid-cols-3">
+              {MORE_TROPICAL.map((m) => (
+                <li key={m.name} className="flex justify-between gap-4 border-b border-border pb-3 text-sm">
+                  <span>{m.name} <span className="text-muted-foreground">· {m.tier}</span></span>
+                  <span className="font-medium">from {tsh(PRICES[m.tier][1])}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        <div className="mt-10 overflow-x-auto rounded-[var(--radius)] bg-cocoa p-7 text-on-dark shadow-soft">
+          <h3 className="font-display text-2xl">Price by <span className="font-script text-blush">size</span></h3>
+          <table className="mt-5 w-full min-w-[640px] text-left text-sm">
+            <thead>
+              <tr className="text-on-dark-dim">
+                <th className="py-2 pr-4 font-medium">Tier</th>
+                {SIZES.map((s) => (
+                  <th key={s} className="py-2 pr-4 font-medium">{s}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {tiers.map((t) => (
+                <tr key={t} className="border-t border-on-dark/15">
+                  <td className="py-3 pr-4 font-display text-blush">{t}</td>
+                  {PRICES[t].map((p, i) => (
+                    <td key={i} className="py-3 pr-4">{tsh(p)}</td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
     </section>
