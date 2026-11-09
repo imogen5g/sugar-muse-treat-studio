@@ -77,7 +77,7 @@ const PRICES: Record<Tier, number[]> = {
   Premium: [15000, 45000, 70000, 96000, 122000, 175000],
 };
 const SIZES = ["Slice", "½ kg", "1 kg", "1½ kg", "2 kg", "3 kg"];
-const tsh = (n: number) => `TSh ${n.toLocaleString("en-US")}`;
+const tsh = (n: number | undefined) => `TSh ${(n ?? 0).toLocaleString("en-US")}`;
 
 const CAKES: Cake[] = [
   { name: "Vanilla Butter", cat: "Classics", tier: "Standard", note: "Soft, golden and buttery.", image: vanillaImg.url },
