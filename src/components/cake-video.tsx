@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 
-export function CakeVideo({ src, name, poster }: { src: string; name: string; poster?: string }) {
+export function CakeVideo({ src, name, poster }: { src: string; name: string; poster?: string | undefined }) {
   const ref = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
