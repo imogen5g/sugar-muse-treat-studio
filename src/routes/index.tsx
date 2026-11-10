@@ -3,15 +3,36 @@ import { useEffect, useRef, useState } from "react";
 import fudge from "@/assets/fudge_cake.mp4.asset.json";
 import coconut from "@/assets/coconut_cake.mp4.asset.json";
 import tiramisu from "@/assets/tiramisu_cake.mp4.asset.json";
-import vanillaImg from "@/assets/vanilla_cake.jpg.asset.json";
-import redVelvetImg from "@/assets/redvelvet_cake.jpg.asset.json";
-import lemonImg from "@/assets/lemon_cake.jpg.asset.json";
-import marbleImg from "@/assets/marble_cake.jpg.asset.json";
-import ganacheImg from "@/assets/ganache_cake.jpg.asset.json";
-import mousseImg from "@/assets/mousse_cake.jpg.asset.json";
-import oreoImg from "@/assets/oreo_cake.jpg.asset.json";
-import passionImg from "@/assets/passion_cake.jpg.asset.json";
-import mangoImg from "@/assets/mango_cake.jpg.asset.json";
+import vanillaVideo from "@/assets/vanilla.mp4.asset.json";
+import vanillaPoster from "@/assets/vanilla.jpg.asset.json";
+import redVelvetVideo from "@/assets/red-velvet.mp4.asset.json";
+import redVelvetPoster from "@/assets/red-velvet.jpg.asset.json";
+import lemonVideo from "@/assets/lemon.mp4.asset.json";
+import lemonPoster from "@/assets/lemon.jpg.asset.json";
+import marbleVideo from "@/assets/marble.mp4.asset.json";
+import marblePoster from "@/assets/marble.jpg.asset.json";
+import ganacheVideo from "@/assets/chocolate-ganache.mp4.asset.json";
+import ganachePoster from "@/assets/chocolate-ganache.jpg.asset.json";
+import mousseVideo from "@/assets/chocolate-mousse.mp4.asset.json";
+import moussePoster from "@/assets/chocolate-mousse.jpg.asset.json";
+import oreoVideo from "@/assets/oreo.mp4.asset.json";
+import oreoPoster from "@/assets/oreo.jpg.asset.json";
+import passionVideo from "@/assets/passion-fruit.mp4.asset.json";
+import passionPoster from "@/assets/passion-fruit.jpg.asset.json";
+import mangoVideo from "@/assets/mango.mp4.asset.json";
+import mangoPoster from "@/assets/mango.jpg.asset.json";
+import coconutPassionVideo from "@/assets/coconut-passion.mp4.asset.json";
+import coconutPassionPoster from "@/assets/coconut-passion.jpg.asset.json";
+import bananaVideo from "@/assets/banana.mp4.asset.json";
+import bananaPoster from "@/assets/banana.jpg.asset.json";
+import coconutLimeVideo from "@/assets/coconut-lime.mp4.asset.json";
+import coconutLimePoster from "@/assets/coconut-lime.jpg.asset.json";
+import orangeVideo from "@/assets/orange.mp4.asset.json";
+import orangePoster from "@/assets/orange.jpg.asset.json";
+import mangoVanillaVideo from "@/assets/mango-vanilla.mp4.asset.json";
+import mangoVanillaPoster from "@/assets/mango-vanilla.jpg.asset.json";
+import { CakeVideo } from "@/components/cake-video";
+import { Button } from "@/components/ui/button";
 import cheatDay from "@/assets/cheat-day.jpg";
 import counter from "@/assets/bakery-counter.jpg";
 
@@ -80,26 +101,26 @@ const SIZES = ["Slice", "½ kg", "1 kg", "1½ kg", "2 kg", "3 kg"];
 const tsh = (n: number | undefined) => `TSh ${(n ?? 0).toLocaleString("en-US")}`;
 
 const CAKES: Cake[] = [
-  { name: "Vanilla Butter", cat: "Classics", tier: "Standard", note: "Soft, golden and buttery.", image: vanillaImg.url },
+  { name: "Vanilla Butter", cat: "Classics", tier: "Standard", note: "Soft, golden and buttery.", video: vanillaVideo.url, image: vanillaPoster.url },
   { name: "Chocolate Fudge", cat: "Classics", tier: "Rich", note: "Dense, glossy, ridiculously rich.", video: fudge.url },
-  { name: "Red Velvet", cat: "Classics", tier: "Rich", note: "Cream cheese frosting, crimson crumb.", image: redVelvetImg.url },
-  { name: "Lemon Drizzle", cat: "Classics", tier: "Standard", note: "Zesty glaze on a tender loaf.", image: lemonImg.url },
-  { name: "Marble", cat: "Classics", tier: "Standard", note: "Vanilla and cocoa swirled together.", image: marbleImg.url },
+  { name: "Red Velvet", cat: "Classics", tier: "Rich", note: "Cream cheese frosting, crimson crumb.", video: redVelvetVideo.url, image: redVelvetPoster.url },
+  { name: "Lemon Drizzle", cat: "Classics", tier: "Standard", note: "Zesty glaze on a tender loaf.", video: lemonVideo.url, image: lemonPoster.url },
+  { name: "Marble", cat: "Classics", tier: "Standard", note: "Vanilla and cocoa swirled together.", video: marbleVideo.url, image: marblePoster.url },
   { name: "Coconut", cat: "Classics", tier: "Standard", note: "Toasted flakes on whipped vanilla.", video: coconut.url },
-  { name: "Chocolate Ganache", cat: "Fancy", tier: "Premium", note: "Silky ganache poured over cocoa sponge.", image: ganacheImg.url },
-  { name: "Chocolate Mousse", cat: "Fancy", tier: "Premium", note: "Airy mousse on a fudgy base.", image: mousseImg.url },
-  { name: "Oreo", cat: "Fancy", tier: "Rich", note: "Cookies-and-cream, crumb on top.", image: oreoImg.url },
-  { name: "Passion Fruit", cat: "Fancy", tier: "Rich", note: "Tangy curd, sunny sponge.", image: passionImg.url },
-  { name: "Mango", cat: "Tropical", tier: "Rich", note: "Fresh mango layers and cream.", image: mangoImg.url },
+  { name: "Chocolate Ganache", cat: "Fancy", tier: "Premium", note: "Silky ganache poured over cocoa sponge.", video: ganacheVideo.url, image: ganachePoster.url },
+  { name: "Chocolate Mousse", cat: "Fancy", tier: "Premium", note: "Airy mousse on a fudgy base.", video: mousseVideo.url, image: moussePoster.url },
+  { name: "Oreo", cat: "Fancy", tier: "Rich", note: "Cookies-and-cream, crumb on top.", video: oreoVideo.url, image: oreoPoster.url },
+  { name: "Passion Fruit", cat: "Fancy", tier: "Rich", note: "Tangy curd, sunny sponge.", video: passionVideo.url, image: passionPoster.url },
+  { name: "Mango", cat: "Tropical", tier: "Rich", note: "Fresh mango layers and cream.", video: mangoVideo.url, image: mangoPoster.url },
+  { name: "Passion Fruit & Coconut", cat: "Tropical", tier: "Rich", note: "A tropical twist on your sweet pause.", video: coconutPassionVideo.url, image: coconutPassionPoster.url },
+  { name: "Banana", cat: "Tropical", tier: "Standard", note: "A little banana bliss.", video: bananaVideo.url, image: bananaPoster.url },
+  { name: "Coconut & Lime", cat: "Tropical", tier: "Rich", note: "Coconut comfort with a citrus twist.", video: coconutLimeVideo.url, image: coconutLimePoster.url },
+  { name: "Orange", cat: "Tropical", tier: "Standard", note: "A bright, citrus cheat day.", video: orangeVideo.url, image: orangePoster.url },
+  { name: "Mango & Vanilla Cream", cat: "Tropical", tier: "Rich", note: "Mango meets mellow vanilla cream.", video: mangoVanillaVideo.url, image: mangoVanillaPoster.url },
 ];
 
 const MORE_TROPICAL: { name: string; tier: Tier }[] = [
-  { name: "Passion Fruit & Coconut", tier: "Rich" },
-  { name: "Banana", tier: "Standard" },
-  { name: "Coconut & Lime", tier: "Rich" },
-  { name: "Orange", tier: "Standard" },
   { name: "Pineapple & Coconut", tier: "Rich" },
-  { name: "Mango & Vanilla Cream", tier: "Rich" },
 ];
 
 function useReveal() {
@@ -207,7 +228,8 @@ function Hero() {
     };
   }, []);
   const stage = p < 0.33 ? 0 : p < 0.67 ? 1 : 2;
-  const s = STAGES[stage]!;
+  const s = STAGES[stage] ?? STAGES[0];
+  if (!s) return null;
 
   return (
     <section id="top" ref={runway} className="relative h-[300vh] bg-cocoa">
@@ -351,7 +373,7 @@ function CakeCard({ c }: { c: Cake }) {
     <article className="group flex flex-col overflow-hidden rounded-[var(--radius)] bg-cocoa text-on-dark shadow-soft transition duration-500 hover:-translate-y-2">
       <div className="relative aspect-[4/5] overflow-hidden">
         {c.video ? (
-          <video src={c.video} autoPlay muted loop playsInline preload="metadata" className="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
+          <CakeVideo src={c.video} name={c.name} poster={c.image} />
         ) : (
           <img src={c.image} alt={`${c.name} cake`} loading="lazy" width={736} height={920} className="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
         )}
@@ -363,15 +385,16 @@ function CakeCard({ c }: { c: Cake }) {
         <p className="mt-1 text-sm text-on-dark-dim">{c.note}</p>
         <div className="mt-5 flex flex-wrap gap-1.5">
           {SIZES.map((s, i) => (
-            <button
+            <Button variant="ghost"
               key={s}
               onClick={() => setSize(i)}
+              aria-pressed={size === i}
               className={`rounded-full px-3 py-1 text-xs font-medium transition ${
                 size === i ? "bg-blush text-cocoa" : "border border-on-dark/20 text-on-dark-dim hover:border-on-dark/60"
               }`}
             >
               {s}
-            </button>
+            </Button>
           ))}
         </div>
         <p className="mt-5 font-display text-2xl text-blush">{tsh(prices[size])}</p>
@@ -397,15 +420,16 @@ function Menu() {
           </div>
           <div className="flex flex-wrap gap-2">
             {tabs.map((t) => (
-              <button
+              <Button variant="ghost"
                 key={t}
                 onClick={() => setTab(t)}
+                aria-pressed={tab === t}
                 className={`rounded-full px-5 py-2.5 text-sm font-medium transition ${
                   tab === t ? "bg-cocoa text-on-dark" : "border border-cocoa/20 hover:border-cocoa"
                 }`}
               >
                 {t}
-              </button>
+              </Button>
             ))}
           </div>
         </div>
@@ -523,11 +547,12 @@ function Love() {
     ["Ordered the coconut cake for my mum's birthday. She cried. I cried. We had seconds.", "Aisha K.", "Proud cake gifter"],
   ];
   const [i, setI] = useState(0);
-  const note = notes[i]!;
+  const note = notes[i] ?? notes[0];
   useEffect(() => {
     const t = setInterval(() => setI((x) => (x + 1) % notes.length), 6000);
     return () => clearInterval(t);
   }, [notes.length]);
+  if (!note) return null;
   return (
     <section id="love" className="px-5 py-24 text-center md:px-12 md:py-32">
       <span className="eyebrow">Love notes</span>
