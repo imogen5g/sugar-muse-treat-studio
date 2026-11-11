@@ -11,7 +11,7 @@ export function CakeVideo({ src, name, poster }: { src: string; name: string; po
       ([entry]) => {
         if (entry?.isIntersecting) {
           if (video.preload === "none") {
-            video.preload = "metadata";
+            video.preload = "auto";
             video.load();
           }
           if (!reducedMotion.matches) void video.play().catch(() => undefined);
@@ -34,9 +34,16 @@ export function CakeVideo({ src, name, poster }: { src: string; name: string; po
       muted
       loop
       playsInline
-      controls
+      controls={false}
+      disablePictureInPicture
+      onCanPlay={() => {
+        const video = ref.current;
+        if (!video || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        const rect = video.getBoundingClientRect();
+        if (rect.bottom > 0 && rect.top < window.innerHeight) void video.play().catch(() => undefined);
+      }}
       preload="none"
-      className="h-full w-full object-cover"
+      className="cake-video h-full w-full object-cover"
     />
   );
 }

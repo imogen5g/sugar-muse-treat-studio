@@ -30,4 +30,4 @@ use the editor.
 <!-- LOVABLE:END -->
 
 ## Cake menu
-- Render menu videos through the shared CakeVideo component so clips load and play only when visible, with native playback controls and reduced-motion support.
+- Render menu videos through CakeVideo with hidden native controls, visible-only looping playback and reduced-motion support, so the cake imagery stays uninterrupted without unnecessary downloads.
