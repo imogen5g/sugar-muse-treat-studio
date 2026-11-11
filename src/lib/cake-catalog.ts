@@ -28,6 +28,7 @@ import orangeVideo from "@/assets/orange.mp4.asset.json";
 import orangePoster from "@/assets/orange.jpg.asset.json";
 import mangoVanillaVideo from "@/assets/mango-vanilla.mp4.asset.json";
 import mangoVanillaPoster from "@/assets/mango-vanilla.jpg.asset.json";
+import pineappleCoconutVideo from "@/assets/pineapple-coconut.mp4.asset.json";
 
 export type Tier = "Standard" | "Rich" | "Premium";
 export type Cake = {
@@ -65,9 +66,9 @@ export const CAKES: Cake[] = [
   { name: "Coconut & Lime", cat: "Tropical", tier: "Rich", note: "Coconut comfort with a citrus twist.", video: coconutLimeVideo.url, image: coconutLimePoster.url },
   { name: "Orange", cat: "Tropical", tier: "Standard", note: "A bright, citrus cheat day.", video: orangeVideo.url, image: orangePoster.url },
   { name: "Mango & Vanilla Cream", cat: "Tropical", tier: "Rich", note: "Mango meets mellow vanilla cream.", video: mangoVanillaVideo.url, image: mangoVanillaPoster.url },
+  { name: "Pineapple & Coconut", cat: "Tropical", tier: "Rich", note: "Pineapple sunshine, coconut comfort.", video: pineappleCoconutVideo.url },
 ];
 
 export const MORE_TROPICAL: { name: string; tier: Tier }[] = [
-  { name: "Pineapple & Coconut", tier: "Rich" },
 ];
 
