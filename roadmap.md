@@ -1,10 +1,10 @@
 # Cake video updates
 
 ## Orders and receipts
-- [ ] Hide cake video controls and verify continuous visible playback.
-- [ ] Add a cake order page and a sliding receipt design.
-- [ ] Connect a Tanzania-supported checkout after provider approval.
-- [ ] Send receipts automatically by email and WhatsApp after verified payment (requires sender setup).
+- [x] Hide cake video controls and verify continuous visible playback.
+- [x] Add a cake order page and a sliding receipt design.
+- [ ] Connect Shopify checkout (waiting for user approval and store setup).
+- [ ] Send receipts automatically by email and WhatsApp after verified payment (waiting for checkout, owned email domain and WhatsApp Business setup).
 
 - [ ] Recover the nine original linked cake videos.
 - [ ] Recover videos for the six additional tropical cakes.
