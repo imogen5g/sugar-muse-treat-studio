@@ -372,7 +372,7 @@ function Menu() {
           ))}
         </div>
 
-        {(tab === "All" || tab === "Tropical") && (
+        {MORE_TROPICAL.length > 0 && (tab === "All" || tab === "Tropical") && (
           <div className="mt-10 rounded-[var(--radius)] bg-card p-7 shadow-soft">
             <h3 className="font-display text-2xl">More <span className="font-script text-primary">tropical</span> flavours</h3>
             <ul className="mt-5 grid gap-x-10 gap-y-3 sm:grid-cols-2 lg:grid-cols-3">
