@@ -33,3 +33,8 @@ use the editor.
 - Render menu videos through CakeVideo with hidden native controls, visible-only looping playback and reduced-motion support, so the cake imagery stays uninterrupted without unnecessary downloads.
 - Share the cake catalogue between menu and order pages to prevent price drift.
 - Never treat client review state as payment confirmation; only verified provider events may issue paid receipts.
+
+## Search and analytics
+- Manage page metadata through route head options and routing through TanStack Start; HTML fallback redirects would bypass the server routing.
+- Serve the sitemap from the router-derived inventory with explicit route inclusion decisions; exclude checkout pages and omit non-authoritative lastmod dates.
+- Initialize GA4 once in the root head with automatic page views disabled and send page views from router location changes to avoid duplicate counting.
