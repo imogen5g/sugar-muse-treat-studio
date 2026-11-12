@@ -85,11 +85,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:card", content: "summary_large_image" },
     ],
     scripts: [
+      { async: true, src: "https://www.googletagmanager.com/gtm.js?id=GTM-WNBJ4ZMQ" },
       { async: true, src: "https://www.googletagmanager.com/gtag/js?id=G-HK0JVHV9MM" },
       { children: `window.dataLayer = window.dataLayer || [];
 function gtag(){window.dataLayer.push(arguments);}
-gtag('set', 'developer_id.dZjgwMW', true);
 gtag('js', new Date());
+gtag('set', 'developer_id.dZjgwMW', true);
 gtag('config', 'G-HK0JVHV9MM', { send_page_view: false });` },
     ],
     links: [
