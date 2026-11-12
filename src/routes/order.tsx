@@ -8,6 +8,7 @@ import { CakeVideo } from "@/components/cake-video";
 import { OrderReceipt } from "@/components/order-receipt";
 
 export const Route = createFileRoute("/order")({
+  staticData: { sitemap: false },
   validateSearch: z.object({ cake: z.string().optional(), size: z.number().int().min(0).max(5).optional() }),
   head: () => ({ meta: [
     { title: "Order a Cake — Sugar Muse" },
@@ -16,7 +17,9 @@ export const Route = createFileRoute("/order")({
     { property: "og:description", content: "Plan your next sweet moment with Sugar Muse cakes." },
     { property: "og:type", content: "website" },
     { name: "twitter:card", content: "summary_large_image" },
-  ] }),
+    { name: "robots", content: "noindex, follow" },
+    { property: "og:url", content: "https://sugar-muse-treat-studio.lovable.app/order" },
+  ], links: [{ rel: "canonical", href: "https://sugar-muse-treat-studio.lovable.app/order" }] }),
   component: OrderPage,
 });
 

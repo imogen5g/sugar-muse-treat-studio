@@ -10,22 +10,25 @@ import cheatDay from "@/assets/cheat-day.jpg";
 import counter from "@/assets/bakery-counter.jpg";
 
 export const Route = createFileRoute("/")({
+  staticData: { sitemap: true },
   head: () => ({
     meta: [
-      { title: "Sugar Muse — Cakes for Your Cheat Day" },
+      { title: "Sugar Muse | Cakes for Your Cheat Day" },
       {
         name: "description",
         content:
-          "Sugar Muse bakery: chocolate fudge, coconut, tiramisu and red velvet cakes. Take a chill pill — it's okay to have cake once in a while.",
+          "Explore Sugar Muse's chocolate, classic and tropical cakes in Tanzania. Find your flavour, choose your size and take a sweet, guilt-free break.",
       },
-      { property: "og:title", content: "Sugar Muse — Cakes for Your Cheat Day" },
+      { property: "og:title", content: "Sugar Muse | Cakes for Your Cheat Day" },
       {
         property: "og:description",
-        content: "Take a chill pill. Have the cake. Handmade indulgence from Sugar Muse bakery.",
+        content: "Explore Sugar Muse's chocolate, classic and tropical cakes in Tanzania. Find your flavour, choose your size and take a sweet, guilt-free break.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:url", content: "https://sugar-muse-treat-studio.lovable.app/" },
     ],
+    links: [{ rel: "canonical", href: "https://sugar-muse-treat-studio.lovable.app/" }],
   }),
   component: Index,
 });

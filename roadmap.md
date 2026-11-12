@@ -1,5 +1,10 @@
 # Cake video updates
 
+## SEO, routing and analytics
+- [x] Update page search details and self-referencing public URLs.
+- [x] Add GA4 tracking for G-HK0JVHV9MM, including page navigation.
+- [x] Serve a homepage sitemap and verify direct page links.
+
 ## Orders and receipts
 - [x] Hide cake video controls and verify continuous visible playback.
 - [x] Add a cake order page and a sliding receipt design.

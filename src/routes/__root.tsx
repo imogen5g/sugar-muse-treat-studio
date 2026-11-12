@@ -12,6 +12,7 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { GoogleAnalytics } from "@/components/google-analytics";
 
 function NotFoundComponent() {
   return (
@@ -74,14 +75,22 @@ function ErrorComponent({ error, reset }: ErrorComponentProps) {
 }
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
+  staticData: { sitemap: false },
   head: () => ({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Sugar Muse Bakery" },
-      { name: "description", content: "Sugar Muse — cakes for your well-deserved cheat day." },
+      { property: "og:site_name", content: "Sugar Muse" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+    ],
+    scripts: [
+      { async: true, src: "https://www.googletagmanager.com/gtag/js?id=G-HK0JVHV9MM" },
+      { children: `window.dataLayer = window.dataLayer || [];
+function gtag(){window.dataLayer.push(arguments);}
+gtag('set', 'developer_id.dZjgwMW', true);
+gtag('js', new Date());
+gtag('config', 'G-HK0JVHV9MM', { send_page_view: false });` },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -122,6 +131,7 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <GoogleAnalytics />
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
     </QueryClientProvider>
