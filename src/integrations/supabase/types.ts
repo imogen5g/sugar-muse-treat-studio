@@ -14,7 +14,63 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      cake_orders: {
+        Row: {
+          access_token_hash: string
+          cake: string
+          created_at: string
+          customer_name: string
+          email: string
+          id: string
+          message: string
+          paid_at: string | null
+          payment_status: string
+          preferred_date: string
+          quantity: number
+          size_index: number
+          total_tsh: number
+          transaction_reference: string | null
+          verified_provider_reference: string | null
+          whatsapp: string
+        }
+        Insert: {
+          access_token_hash: string
+          cake: string
+          created_at?: string
+          customer_name: string
+          email: string
+          id: string
+          message?: string
+          paid_at?: string | null
+          payment_status?: string
+          preferred_date: string
+          quantity: number
+          size_index: number
+          total_tsh: number
+          transaction_reference?: string | null
+          verified_provider_reference?: string | null
+          whatsapp: string
+        }
+        Update: {
+          access_token_hash?: string
+          cake?: string
+          created_at?: string
+          customer_name?: string
+          email?: string
+          id?: string
+          message?: string
+          paid_at?: string | null
+          payment_status?: string
+          preferred_date?: string
+          quantity?: number
+          size_index?: number
+          total_tsh?: number
+          transaction_reference?: string | null
+          verified_provider_reference?: string | null
+          whatsapp?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
