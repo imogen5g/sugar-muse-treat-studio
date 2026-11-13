@@ -1,5 +1,12 @@
 # Cake video updates
 
+## Dar es Salaam ordering update
+- [ ] Rename pricing to Bento and shorten cake descriptions.
+- [ ] Update local search details, headings, images and Bakery structured data.
+- [ ] Save orders and show an instant summary with payment next steps.
+- [ ] Add a QR payment screen and safe payment-status checks.
+- [ ] Connect verified payments and automatic receipt delivery (requires payment provider and sender setup).
+
 ## SEO, routing and analytics
 - [x] Update page search details and self-referencing public URLs.
 - [x] Add GA4 tracking for G-HK0JVHV9MM, including page navigation.
