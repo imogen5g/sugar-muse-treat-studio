@@ -8,26 +8,31 @@ import { CakeVideo } from "@/components/cake-video";
 import { Button } from "@/components/ui/button";
 import cheatDay from "@/assets/cheat-day.jpg";
 import counter from "@/assets/bakery-counter.jpg";
+import { bakerySchema } from "@/lib/local-seo";
+import vanillaPoster from "@/assets/vanilla.jpg.asset.json";
 
 export const Route = createFileRoute("/")({
   staticData: { sitemap: true },
   head: () => ({
     meta: [
-      { title: "Sugar Muse | Cakes for Your Cheat Day" },
+      { title: "Sugar Muse | Custom Cakes in Dar es Salaam" },
       {
         name: "description",
         content:
-          "Explore Sugar Muse's chocolate, classic and tropical cakes in Tanzania. Find your flavour, choose your size and take a sweet, guilt-free break.",
+          "Order custom cakes, bento cakes and treats in Dar es Salaam, Tanzania. Pre-orders and local delivery from Sugar Muse Treat Studio.",
       },
-      { property: "og:title", content: "Sugar Muse | Cakes for Your Cheat Day" },
+      { property: "og:title", content: "Sugar Muse | Custom Cakes in Dar es Salaam" },
       {
         property: "og:description",
-        content: "Explore Sugar Muse's chocolate, classic and tropical cakes in Tanzania. Find your flavour, choose your size and take a sweet, guilt-free break.",
+        content: "Order custom cakes, bento cakes and treats in Dar es Salaam, Tanzania. Pre-orders and local delivery from Sugar Muse Treat Studio.",
       },
+      { property: "og:image", content: `https://sugar-muse-treat-studio.lovable.app${vanillaPoster.url}` },
+      { name: "twitter:image", content: `https://sugar-muse-treat-studio.lovable.app${vanillaPoster.url}` },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { property: "og:url", content: "https://sugar-muse-treat-studio.lovable.app/" },
     ],
+    scripts: [{ type: "application/ld+json", children: JSON.stringify(bakerySchema) }],
     links: [{ rel: "canonical", href: "https://sugar-muse-treat-studio.lovable.app/" }],
   }),
   component: Index,
@@ -197,9 +202,10 @@ function Hero() {
         <div key={stage} className="absolute inset-x-5 bottom-28 z-10 max-w-xl lg:inset-x-auto lg:bottom-auto lg:left-[6vw] lg:top-1/2 lg:-translate-y-1/2">
           <span className="eyebrow animate-stage !text-blush">{s.eyebrow}</span>
           <h1 className="animate-stage mt-5 font-display text-[clamp(52px,7vw,104px)] leading-[0.98] text-on-dark text-glow [animation-delay:80ms]">
-            {s.title[0]} <span className="font-script text-blush">{s.title[1]}</span>
+            Sugar <span className="font-script text-blush">Muse</span>
           </h1>
           <p className="animate-stage mt-5 max-w-md text-base leading-relaxed text-on-dark/90 [animation-delay:160ms]">{s.desc}</p>
+          <p className="mt-3 text-sm text-on-dark">Custom cakes &amp; treats · Dar es Salaam, Tanzania</p>
           <div className="animate-stage mt-8 flex flex-wrap gap-3 [animation-delay:240ms]">
             <a href="#menu" className="rounded-full bg-primary px-7 py-3.5 text-sm font-semibold text-primary-foreground shadow-cherry transition hover:-translate-y-0.5">
               See the Menu →
@@ -310,7 +316,7 @@ function CakeCard({ c }: { c: Cake }) {
         {c.video ? (
           <CakeVideo src={c.video} name={c.name} poster={c.image} />
         ) : (
-          <img src={c.image} alt={`${c.name} cake`} loading="lazy" width={736} height={920} className="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
+          <img src={c.image} alt={`${c.name} custom cake by Sugar Muse in Dar es Salaam`} loading="lazy" width={736} height={920} className="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
         )}
         <span className="absolute left-4 top-4 rounded-full bg-cream/90 px-3 py-1 text-[11px] font-semibold uppercase tracking-[2px] text-cocoa">{c.cat}</span>
         <span className="absolute right-4 top-4 rounded-full bg-primary px-3 py-1 text-[11px] font-semibold uppercase tracking-[2px] text-primary-foreground">{c.tier}</span>
@@ -351,7 +357,7 @@ function Menu() {
           <div>
             <span className="eyebrow">The cheat sheet · price list</span>
             <h2 className="mt-5 font-display text-[clamp(36px,4.4vw,60px)] leading-[1.08]">
-              Handpicked <span className="font-script text-primary">indulgences</span>
+              Custom cakes &amp; <span className="font-script text-primary">bento</span>
             </h2>
           </div>
           <div className="flex flex-wrap gap-2">
@@ -369,6 +375,7 @@ function Menu() {
             ))}
           </div>
         </div>
+        <p className="mt-6 text-muted-foreground">Pre-orders &amp; local delivery available across Dar es Salaam.</p>
         <div className="mt-14 grid gap-7 sm:grid-cols-2 lg:grid-cols-4">
           {list.map((c) => (
             <CakeCard key={c.name} c={c} />
@@ -544,11 +551,10 @@ function Footer() {
           </ul>
         </div>
         <div>
-          <h4 className="font-display text-lg">Visit</h4>
+          <h2 className="font-display text-lg">Visit Me</h2>
           <ul className="mt-4 space-y-2 text-sm text-on-dark-dim">
-            <li>Westlands, Nairobi</li>
-            <li>Tue – Sun · 8am – 8pm</li>
-            <li>hello@sugarmuse.co</li>
+            <li>Dar es Salaam, Tanzania</li>
+            <li>Pre-orders &amp; local delivery available across Dar es Salaam</li>
           </ul>
         </div>
         <div>

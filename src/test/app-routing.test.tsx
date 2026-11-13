@@ -21,6 +21,12 @@ describe("App routing", () => {
     expect(router.matchRoutes("/order").at(-1)?.routeId).toBe("/order");
   });
 
+  it("matches the payment page directly without including it in the sitemap", () => {
+    const router = createRouter({ routeTree, context: { queryClient: new QueryClient() } });
+    expect(router.matchRoutes("/payment").at(-1)?.routeId).toBe("/payment");
+    expect(sitemapStaticPaths(router)).not.toContain("/payment");
+  });
+
   it("includes only the homepage in the public sitemap", () => {
     const router = createRouter({ routeTree, context: { queryClient: new QueryClient() } });
     expect(sitemapStaticPaths(router)).toEqual(["/"]);

@@ -33,6 +33,8 @@ use the editor.
 - Render menu videos through CakeVideo with hidden native controls, visible-only looping playback and reduced-motion support, so the cake imagery stays uninterrupted without unnecessary downloads.
 - Share the cake catalogue between menu and order pages to prevent price drift.
 - Never treat client review state as payment confirmation; only verified provider events may issue paid receipts.
+- Guest orders use server-validated totals and hashed per-order access tokens; browser Data API access stays disabled to protect customer details.
+- Customer payment references can only request verification; paid receipts require a stored verified provider reference and payment timestamp.
 
 ## Search and analytics
 - Manage page metadata through route head options and routing through TanStack Start; HTML fallback redirects would bypass the server routing.
