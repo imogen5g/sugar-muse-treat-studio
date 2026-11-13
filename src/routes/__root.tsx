@@ -84,23 +84,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-        meta: [
-      { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { property: "og:site_name", content: "Sugar Muse" },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-    scripts: [
-      { async: true, src: "https://www.googletagmanager.com/gtm.js?id=GTM-WNBJ4ZMQ" },
-      { async: true, src: "https://www.googletagmanager.com/gtag/js?id=G-HK0JVHV9MM" },
-      { children: `window.dataLayer = window.dataLayer || [];
-function gtag(){window.dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('set', 'developer_id.dZjgwMW', true);
-gtag('config', 'G-HK0JVHV9MM', { send_page_view: false });` },
-    ],
-
     scripts: [
       { async: true, src: "https://www.googletagmanager.com/gtm.js?id=GTM-WNBJ4ZMQ" },
       { async: true, src: "https://www.googletagmanager.com/gtag/js?id=G-HK0JVHV9MM" },
