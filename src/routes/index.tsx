@@ -316,7 +316,7 @@ function CakeCard({ c }: { c: Cake }) {
         {c.video ? (
           <CakeVideo src={c.video} name={c.name} poster={c.image} />
         ) : (
-          <img src={c.image} alt={`${c.name} custom cake by Sugar Muse in Dar es Salaam}`} loading="lazy" width={736} height={920} className="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
+          <img src={c.image} alt={`${c.name} custom cake by Sugar Muse in Dar es Salaam`} loading="lazy" width={736} height={920} className="h-full w-full object-cover transition duration-700 group-hover:scale-105" />
         )}
         <span className="absolute left-4 top-4 rounded-full bg-cream/90 px-3 py-1 text-[11px] font-semibold uppercase tracking-[2px] text-cocoa">{c.cat}</span>
         <span className="absolute right-4 top-4 rounded-full bg-primary px-3 py-1 text-[11px] font-semibold uppercase tracking-[2px] text-primary-foreground">{c.tier}</span>
@@ -357,7 +357,7 @@ function Menu() {
           <div>
             <span className="eyebrow">The cheat sheet · price list</span>
             <h2 className="mt-5 font-display text-[clamp(36px,4.4vw,60px)] leading-[1.08]">
-              Custom cakes &amp; <span className="font-script text-primary">bento</span> <span className="font-script text-primary">indulgences</span>
+              Custom cakes &amp; <span className="font-script text-primary">bento</span>
             </h2>
           </div>
           <div className="flex flex-wrap gap-2">

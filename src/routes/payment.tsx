@@ -8,6 +8,7 @@ import { OrderReceipt } from "@/components/order-receipt";
 import { getCakeOrder, reportCakePayment } from "@/lib/orders.functions";
 import { hasVerifiedPayment, PAYMENT_QR_URL, SELCOM_LIPA_NUMBER } from "@/lib/order-validation";
 import { SIZES, tsh } from "@/lib/cake-catalog";
+import vanillaPoster from "@/assets/vanilla.jpg.asset.json";
 
 export const Route = createFileRoute("/payment")({
   staticData: { sitemap: false },
@@ -18,6 +19,8 @@ export const Route = createFileRoute("/payment")({
     { property: "og:title", content: "Cake Payment in Dar es Salaam | Sugar Muse" },
     { property: "og:description", content: "Your custom cake order and payment details from Sugar Muse in Dar es Salaam, Tanzania." },
     { property: "og:type", content: "website" },
+    { property: "og:image", content: `https://sugar-muse-treat-studio.lovable.app${vanillaPoster.url}` },
+    { name: "twitter:image", content: `https://sugar-muse-treat-studio.lovable.app${vanillaPoster.url}` },
     { name: "twitter:card", content: "summary_large_image" },
     { name: "robots", content: "noindex, follow" },
     { property: "og:url", content: "https://sugar-muse-treat-studio.lovable.app/payment" },

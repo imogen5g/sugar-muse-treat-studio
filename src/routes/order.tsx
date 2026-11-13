@@ -8,6 +8,7 @@ import { CAKES, MORE_TROPICAL, PRICES, SIZES, tsh } from "@/lib/cake-catalog";
 import { Button } from "@/components/ui/button";
 import { CakeVideo } from "@/components/cake-video";
 import { OrderReceipt } from "@/components/order-receipt";
+import vanillaPoster from "@/assets/vanilla.jpg.asset.json";
 
 export const Route = createFileRoute("/order")({
   staticData: { sitemap: false },
@@ -18,6 +19,8 @@ export const Route = createFileRoute("/order")({
     { property: "og:title", content: "Order Custom Cakes in Dar es Salaam | Sugar Muse" },
     { property: "og:description", content: "Pre-order your custom cake or bento from Sugar Muse, with local delivery across Dar es Salaam, Tanzania." },
     { property: "og:type", content: "website" },
+    { property: "og:image", content: `https://sugar-muse-treat-studio.lovable.app${vanillaPoster.url}` },
+    { name: "twitter:image", content: `https://sugar-muse-treat-studio.lovable.app${vanillaPoster.url}` },
     { name: "twitter:card", content: "summary_large_image" },
     { name: "robots", content: "noindex, follow" },
     { property: "og:url", content: "https://sugar-muse-treat-studio.lovable.app/order" },
@@ -34,7 +37,7 @@ function OrderPage() {
   const [size, setSize] = useState(search.size ?? 2);
   const [quantity, setQuantity] = useState(1);
   const [name, setName] = useState("");
-  const [reviewing, setReviewing] = useState(false);
+  const [reviewing] = useState(false);
   const [animation, setAnimation] = useState(0);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
@@ -67,11 +70,11 @@ function OrderPage() {
           <section>
             <h2 className="mb-5 font-display text-2xl">01 · Make it yours</h2>
             <label className="block text-sm font-medium">Cake flavour
-              <select value={cake.name} onChange={e => { setCakeName(e.target.value); setReviewing(false); }} className="mt-2 h-12 w-full rounded-md border bg-card px-3 text-foreground">
+              <select value={cake.name} onChange={e => { setCakeName(e.target.value); setAttempt(null); }} className="mt-2 h-12 w-full rounded-md border bg-card px-3 text-foreground">
                 {cakes.map(c => <option key={c.name}>{c.name}</option>)}
               </select>
             </label>
-            <fieldset className="mt-5"><legend className="text-sm font-medium">Cake size</legend><div className="mt-2 flex flex-wrap gap-2">{SIZES.map((s,i) => <Button type="button" key={s} variant={size === i ? "default" : "outline"} aria-pressed={size === i} onClick={() => { setSize(i); setReviewing(false); }}>{s}</Button>)}</div></fieldset>
+            <fieldset className="mt-5"><legend className="text-sm font-medium">Cake size</legend><div className="mt-2 flex flex-wrap gap-2">{SIZES.map((s,i) => <Button type="button" key={s} variant={size === i ? "default" : "outline"} aria-pressed={size === i} onClick={() => { setSize(i); setAttempt(null); }}>{s}</Button>)}</div></fieldset>
             <div className="mt-5 flex items-center justify-between"><span className="text-sm font-medium">Quantity</span><div className="flex items-center gap-4"><Button type="button" variant="outline" size="icon" disabled={quantity === 1} aria-label="Decrease quantity" onClick={() => setQuantity(q => q-1)}><Minus /></Button><span className="w-7 text-center">{quantity}</span><Button type="button" variant="outline" size="icon" aria-label="Increase quantity" onClick={() => setQuantity(q => q+1)}><Plus /></Button></div></div>
           </section>
           <section className="border-t pt-8">
